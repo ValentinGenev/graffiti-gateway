@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  gateway:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: graffiti-messages-api
+    ports:
+      - "${REST_PORT}:5001"
+    depends_on:
+      - messages-api
+    restart: on-failure
+
+  messages-api:
+    image: valgen/graffiti-messages-service:latest
+    container_name: graffiti-messages-api
+    ports:
+      - "${MESSAGES_API_REST_PORT}:5000"
+    depends_on:
+      - database
+    restart: on-failure
+
+  database:
+    image: mysql:8.0
+    container_name: graffiti-database
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "${DB_PORT}:3306"
+    volumes:
+      - dbdata:/var/lib/mysql
+    restart: on-failure
+
+volumes:
+  dbdata:

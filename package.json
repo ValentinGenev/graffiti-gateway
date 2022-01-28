@@ -1,0 +1,53 @@
+{
+    "name": "graffiti-gateway",
+    "version": "1.0.0",
+    "description": "A gateway for a message board.",
+    "main": "index.js",
+    "scripts": {
+      "clean": "rm -rf dist",
+      "build": "npm run clean && tsc --build tsconfig.json",
+      "start": "node ./dist/index.js",
+      "dev": "nodemon ./src/index.ts",
+      "test": "npx jest tests/ --detectOpenHandles"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/ValentinGenev/graffiti-gateway.git"
+    },
+    "keywords": [
+      "api gateway",
+      "authorization",
+      "rest"
+    ],
+    "author": "Valentin Genev",
+    "license": "MIT",
+    "bugs": {
+      "url": "https://github.com/ValentinGenev/graffiti-gateway/issues"
+    },
+    "homepage": "https://github.com/ValentinGenev/graffiti-gateway#readme",
+    "dependencies": {
+      "@types/express": "^4.17.13",
+      "@types/mysql": "^2.15.20",
+      "@types/node": "^17.0.8",
+      "body-parser": "^1.19.1",
+      "dotenv": "^10.0.0",
+      "express": "^4.17.2",
+      "express-fingerprint": "^1.2.2",
+      "jest": "^27.4.5",
+      "mysql": "^2.18.1",
+      "ts-node": "^10.4.0",
+      "typescript": "^4.5.4"
+    },
+    "devDependencies": {
+      "@types/jest": "^27.0.3",
+      "nodemon": "^2.0.15",
+      "ts-jest": "^27.1.2"
+    },
+    "jest": {
+      "verbose": true,
+      "transform": {
+        "[.]tsx?$": "ts-jest"
+      }
+    }
+  }
+  
