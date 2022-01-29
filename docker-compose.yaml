@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: graffiti-messages-api
+    container_name: graffiti-gateway
     ports:
       - "${REST_PORT}:5001"
     depends_on:
@@ -13,7 +13,7 @@ services:
     restart: on-failure
 
   messages-api:
-    image: valgen/graffiti-messages-service:latest
+    image: ${MESSAGES_API_IMAGE}
     container_name: graffiti-messages-api
     ports:
       - "${MESSAGES_API_REST_PORT}:5000"
