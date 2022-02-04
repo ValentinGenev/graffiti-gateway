@@ -11,5 +11,6 @@ export const rest = new _rest.RestServer({
 if (process.env.NODE_ENV !== 'test') {
     _rest.useBodyParser(rest)
     _rest.start(rest)
+    _rest.useFingerPrint(rest)
     _messagesRouter.setRoutes(rest)
 }
