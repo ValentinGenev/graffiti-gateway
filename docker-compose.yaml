@@ -16,7 +16,7 @@ services:
     image: ${MESSAGES_API_IMAGE}
     container_name: graffiti-messages-api
     ports:
-      - "${MESSAGES_API_REST_PORT}:5000"
+      - "${MESSAGES_API_PORT}:5000"
     depends_on:
       - database
     restart: on-failure
