@@ -1,6 +1,7 @@
 import express from 'express'
 import bodyParser from 'body-parser'
 import fingerprint from 'express-fingerprint'
+import { Header } from '../interfaces/IServer'
 
 interface ServerConfiguration {
     port?: string
@@ -29,6 +30,19 @@ export function useBodyParser(rest: RestServer): void {
 
 export function useFingerPrint(rest: RestServer): void {
     rest.getServer().use(fingerprint())
+}
+
+export function setResponseHeaders(
+    rest: RestServer,
+    headers: Header[]
+): void {
+    rest.getServer().use((_request, response, next) => {
+        for (const header of headers) {
+            response.append(header.key, header.value)
+        }
+
+        next()
+    })
 }
 
 export function start(rest: RestServer): void {
