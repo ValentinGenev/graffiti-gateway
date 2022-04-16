@@ -16,6 +16,18 @@ const restHeaders: Header[] = [
     {
         key: 'Access-Control-Allow-Origin',
         value: `${CLIENT_PROTOCOL}://${CLIENT_HOST}:${CLIENT_PORT}`
+    },
+    {
+        key: 'Access-Control-Request-Method',
+        value: 'GET, POST'
+    },
+    {
+        key: 'Access-Control-Allow-Headers',
+        value: 'Content-Type'
+    },
+    {
+        key: 'Access-Control-Max-Age',
+        value: '86400'
     }
 ]
 const rest = new _rest.RestServer({
