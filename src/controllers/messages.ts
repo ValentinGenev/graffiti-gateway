@@ -20,14 +20,16 @@ export function setMessagesRoutes(rest: RestServer): void {
     server.get(`${MESSAGES_API_PATH}/all`, passGetRequest)
     server.get(`${MESSAGES_API_PATH}/all/:pageIndex`, passGetRequest)
     server.get(`${MESSAGES_API_PATH}/last/:posterId`, passGetRequest)
-    
+    server.get(`${MESSAGES_API_PATH}/all/:tag`, passGetRequest)
+    server.get(`${MESSAGES_API_PATH}/all/:tags`, passGetRequest)
+
     server.post(`${MESSAGES_API_PATH}/new`, passPostRequest)
 }
 
 async function passGetRequest(request: Record<string, any>, response: Record<string, any>): Promise<void> {
     const apiData = await axios.get(`${MESSAGES_API_URL}${request.originalUrl}`)
-    
-    response.json(apiData.data) 
+
+    response.json(apiData.data)
 }
 
 async function passPostRequest(request: Record<string, any>, response: Record<string, any>): Promise<void> {
@@ -39,7 +41,7 @@ async function passPostRequest(request: Record<string, any>, response: Record<st
                 'Fingerprint': request.fingerprint.hash
             }
         })
-    
+
     response.json(apiData.data)
 }
 
